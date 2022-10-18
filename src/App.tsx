@@ -7,10 +7,16 @@ import Navbar from './components/Navbar';
 import SignIn from './pages/SignIn';
 import SignOut from './pages/SignOut';
 import Cart from './components/Cart';
+import { useGlobalContext } from './context';
 
 
 function App() {
-  
+  const {setOpenCart}=useGlobalContext()
+  window.addEventListener('click',(e:any)=>{
+    if(e.target.classList[0]==='cartBackground'){
+      setOpenCart(false)
+    }
+  })
   return (
     <div className="App">
       <Router>
