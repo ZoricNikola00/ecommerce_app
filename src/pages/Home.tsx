@@ -60,7 +60,7 @@ const sorted=products?.sort((a:prodType,b:prodType)=>a.rating.rate - b.rating.ra
             <div className='prod-wrap'>
           {sorted?.map((x:prodType)=>{
             const {id,image,title,price}=x
-            return <Item key={id} {...x}/>
+            return <Item key={id} item={x}/>
           })}
           </div>
         </div>
