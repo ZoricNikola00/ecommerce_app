@@ -8,6 +8,7 @@ import SignIn from './pages/SignIn';
 import SignOut from './pages/SignOut';
 import Cart from './components/Cart';
 import { useGlobalContext } from './context';
+import About from './pages/About';
 
 
 function App() {
@@ -28,6 +29,7 @@ function App() {
           <Route path='/specific/:id' element={<Specific/>}/>
           <Route path='/signin' element={<SignIn/>}/>
           <Route path='/signout' element={<SignOut/>}/>
+          <Route path='/about' element={<About/>}/>
         </Routes>
       </Router>
     </div>

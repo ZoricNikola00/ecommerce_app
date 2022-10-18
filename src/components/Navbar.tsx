@@ -19,7 +19,7 @@ const {categ}=useGlobalContext()
                     })}
                 </div>}
             </li></Link>
-            <li>About</li>
+            <Link to='about'><li>About</li></Link>
         </ul>
         <div className='signinout'>
             <Link to='signin'><div><FaSignInAlt/><span>Login</span></div></Link>
