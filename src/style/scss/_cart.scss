@@ -1,7 +1,7 @@
 .cart{
     position: fixed;
-    top: 40px;
-    right: 40px;
+    top: 30px;
+    right: 30px;
     z-index: 1;
     width: 60px;
     height: 60px;
@@ -18,6 +18,11 @@
     &:hover{
         color: $primary;
         background-color: $secondary;
+        border: 3px solid $primary;
+        div{
+            background-color: $primary;
+            color: $secondary;
+        }
     }
     div{
         position: absolute;
@@ -26,13 +31,16 @@
         border-radius: 50%;
         background-color: $secondary;
         font-weight: bold;
-        font-size: 30px;
+        font-size: 25px;
         color: $primary;
         width: 30px;
+        border: 2px solid $primary;
         display: flex;
         justify-content: center;
         align-items: center;
         height: 30px;
+        transition: .6s;
+
     }
 }
 .cartBackground{
@@ -43,14 +51,17 @@
     left: 0;
     background-color: rgba(0, 0, 0, 0.551);
     display: none;
-
+    z-index: 2;
     &.active{
         display: block;
     }
 }
 .cartContainer{
     position: fixed;
-    width: 400px;
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+    width: 500px;
     top:0;
     z-index: 2;
     right: 0;
@@ -58,15 +69,81 @@
     background-color: $primary;
     transform: translateX(100%);
     transition: .6s;
+    overflow: auto;
     &.active{
         transform: translateX(0);
     }
-    div{
+    .total{
         color: $secondary;
-        position: absolute;
+        text-align: center;
+    }
+    .x{
+        color: $secondary;
+        position: fixed;
         left: 10px;
-        top: 10px;
+        top: 5px;
         font-size: 30px;
         cursor: pointer;
+    }
+    .cartItem{
+        position: relative;
+        margin: 10px auto;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        width: 80%;
+        text-align: center;
+        height: auto;
+        color: $secondary;
+        align-items: center;
+        border-bottom: 3px solid $secondary;
+        img{
+            width: 100px;
+            margin: 10px 0;
+        }
+        button{
+            position: absolute;
+            right: 5px;
+            bottom: 5px;
+            color: $secondary;
+            font-size: 25px;
+            background-color: transparent;
+            border: 0;
+            cursor: pointer;
+        }
+        div{
+            display: flex;
+            align-items: center;
+            margin: 10px 0;
+            flex-direction: row;
+            button{
+                position: relative;
+                padding: 5px;
+                width: 30px;
+                bottom: 0;
+                right: 0;
+                height: 30px;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                border: 0ch;
+                border-radius: 10px;
+                font-size: 20px;
+                cursor: pointer;
+                background-color: $secondary;
+                color: $primary;
+                border: 1px solid $secondary;
+                transition: .5s;
+                &:hover{
+                    background-color: $primary;
+                    color: $secondary;
+                }
+            }
+            span{
+                margin: 0 5px;
+                font-size: 20px;
+            }
+            
+        }
     }
 }
