@@ -1,4 +1,5 @@
 $primary:rgb(67, 107, 133);
+$sec-primary:rgb(163, 203, 229);
 $secondary:aliceblue;
 @import 'nav';
 @import 'cart';
@@ -11,9 +12,183 @@ $secondary:aliceblue;
 
 body{
     background-color: rgb(228, 241, 244);
+    overflow-x: hidden;
 }
 .App{
     margin: 100px 0;
     
+    .home-main{
+        position: relative;
+        width: 90%;
+        height: 570px;
+        margin: 120px auto;
+        display: flex;
+        justify-content: center;
+            button{
+            position: absolute;
+            top: 50%;
+            padding: 20px;
+            font-size: 20px;
+            border-radius: 50%;
+            border: 0;
+            background-color: $secondary;
+            color: $primary;
+            opacity: 0.8;
+            cursor: pointer;
+            &.left{
+                left: 10px;
+            }
+            &.right{
+                right: 10px;
+            }
+        }
+        .circles{
+            position: absolute;
+            bottom: 5px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            z-index: 1;
+            
 
+            .circle{
+                width: 30px;
+                height: 30px;
+                background-color: $secondary;
+                border-radius: 50%;
+                margin: 0 10px;
+                transition: .3s;
+                cursor: pointer;
+                &.active{
+                    background-color: $primary;
+                }
+            }
+        }
+
+        .slide{
+            position: absolute;
+            width: 85%;
+            height:100%;
+            display: flex;
+            text-transform: capitalize;
+            justify-content: space-between ;
+            align-items: center;
+            transition: .5s;
+            padding: 20px;
+            border-radius: 20px;
+            div{
+                font-size: 30px;
+                color: $sec-primary;
+                a{
+                    text-decoration: none;
+                    color: $primary;
+                }
+            }
+                &.active{
+                    transform: translateX(0);
+                    opacity: 1;
+                }
+                &.prev{
+                    transform: translateX(-100%);
+                    opacity: 0;
+                    pointer-events: none;
+                }
+                &.next{
+                    transform: translateX(100%);
+                    opacity: 0;
+                    pointer-events: none;
+
+                }
+            img{
+                width: 700px;
+                height: 100%;
+                border-radius: 30px;
+            }
+        }
+    }
+
+    .prod{
+        text-align: center;
+        h1{
+            color: $primary;
+            font-size: 50px;
+        }
+        &-wrap{
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+
+            .item{
+                position: relative;
+                width: 300px;
+                height: auto;
+                margin: 20px;
+                border-radius: 10px;
+                -webkit-box-shadow: 0px 0px 19px 3px rgba(0,0,0,0.75);
+                -moz-box-shadow: 0px 0px 19px 3px rgba(0,0,0,0.75);
+                box-shadow: 0px 0px 19px 3px rgba(0,0,0,0.75);
+                &-info{
+                    display: flex;
+                    padding: 10px;
+                    flex-direction: column;
+                    align-items: flex-start;
+                    font-weight: bold;
+                    p{
+                        font-size: 18px;
+                        text-align: left;
+                        color: $primary;
+                        margin-bottom: 10px;
+                    }
+                    span{
+                        color: $sec-primary;
+                    }
+                }
+                img{
+                    width: 100%;
+                    height: 70%;
+                    border-radius: 10px 10px 0 0;
+                }
+                .viewMore{
+                    position: absolute;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    flex-direction: column;
+                    width: 100%;
+                    height: 100%;
+                    border-radius: 10px;     
+                    top: 0;
+                    left: 0;
+                    background-color: rgba(0, 0, 0, 0.667);
+                    z-index: -1;
+                    opacity: 0;
+                    transition: .6s;
+                    button{
+                        padding: 10px;
+                        border-radius: 10px;
+                        border: 0;
+                        color: $primary;
+                        background-color: $secondary;
+                        margin: 10px 0;
+                        font-size:16px;
+                        font-weight: bold;
+                        transform: translateY(-100%);
+                        transition: .6s;
+                        cursor: pointer;
+                    }
+                    &.active{
+                        z-index: 1;
+                        opacity: 1;
+                        button{
+                            transform: translateY(000%);
+                            &:hover{
+                                background-color: $primary;
+                                color: $secondary;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
 }
