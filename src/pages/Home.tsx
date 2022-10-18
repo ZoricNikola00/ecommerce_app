@@ -42,16 +42,16 @@ const sorted=products?.sort((a:prodType,b:prodType)=>a.rating.rate - b.rating.ra
             <div className='circles'>
                 {categ?.map((_,i:any)=>{
                 
-                  return <div onClick={()=>setIndx(i)} className={`circle ${i===indx && 'active'}`}></div>
+                  return <div key={i} onClick={()=>setIndx(i)} className={`circle ${i===indx && 'active'}`}></div>
                 })}
             </div>
             {categ?.map((x:string,i:number)=>{
                 let position='next'
                 if(i===indx-1 || indx===0 && i===imgs.length-1) position='prev'
                 if(i===indx)position='active'
-                return <div className={`slide ${position}`}>
-                  <div><h4>Check Out Our:</h4><Link to={`/category/${x}`}><h1>{x}</h1></Link> </div>
-                  <Link to={`/category/${x}`}><img src={imgs[i]}/></Link>
+                return <div key={i} className={`slide ${position}`}>
+                  <div><h4>Check Out Our:</h4><Link to={`/shop/${x}`}><h1>{x}</h1></Link> </div>
+                  <Link to={`/shop/${x}`}><img src={imgs[i]}/></Link>
             </div>
           })}
         </div>

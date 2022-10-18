@@ -12,10 +12,10 @@ const {categ}=useGlobalContext()
         <Link to='/'><h1>MyShop</h1></Link>
         <ul>
             <Link to='/'><li>Home</li></Link>
-            <Link to='shop'><li onMouseLeave={()=>setSub(false)} onMouseEnter={()=>setSub(true)} className='shopMenu'>Shop
+            <Link to='/shop/all'><li onMouseLeave={()=>setSub(false)} onMouseEnter={()=>setSub(true)} className='shopMenu'>Shop
                 {sub && <div>
                     {categ?.map((x:string)=>{
-                        return <Link to={`/category/${x}`}><li>{x}</li></Link>
+                        return <Link to={`/shop/${x}`}><li>{x}</li></Link>
                     })}
                 </div>}
             </li></Link>

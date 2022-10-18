@@ -3,7 +3,6 @@ import {FiShoppingCart} from 'react-icons/fi'
 import Home from './pages/Home';
 import Shop from './pages/Shop';
 import Specific from './pages/Specific';
-import Category from './pages/Category';
 import Navbar from './components/Navbar';
 import SignIn from './pages/SignIn';
 import SignOut from './pages/SignOut';
@@ -19,9 +18,8 @@ function App() {
         <Cart/>
         <Routes>
           <Route path='/' element={<Home/>}/>
-          <Route path='/shop' element={<Shop/>}/>
+          <Route path='/shop/:string' element={<Shop/>}/>
           <Route path='/specific/:id' element={<Specific/>}/>
-          <Route path='/category/:string' element={<Category/>}/>
           <Route path='/signin' element={<SignIn/>}/>
           <Route path='/signout' element={<SignOut/>}/>
         </Routes>
