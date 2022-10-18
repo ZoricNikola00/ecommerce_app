@@ -3,9 +3,10 @@ import { useParams } from 'react-router-dom'
 import { prodType, useGlobalContext } from '../context'
 
 const Specific = () => {
-  const {products}=useGlobalContext()
+  const {products,setOpenCart,addToCart}=useGlobalContext()
   const {id}=useParams()
   const itemEl=products?.find((x:prodType)=>x.id===Number(id))
+  console.log(itemEl)
   return (
     <div className='specific'>
       <img src={itemEl?.image}/>
@@ -15,7 +16,7 @@ const Specific = () => {
         <p>Rating {itemEl?.rating?.rate}</p>
         <h2>$ {itemEl?.price}</h2>
         <p>{itemEl?.description}</p>
-        <button>Add To Cart</button>
+        <button onClick={()=>{setOpenCart(true);addToCart(Number(id),itemEl)}}>Add To Cart</button>
       </div>
     </div>
   )

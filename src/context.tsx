@@ -1,4 +1,4 @@
-import { useState, useContext, useReducer,createContext,Dispatch} from 'react'
+import { useState, useContext,useEffect, useReducer,createContext,Dispatch} from 'react'
 import axios from 'axios'
 import {useQuery} from '@tanstack/react-query'
 import { reducer } from './reducer'
@@ -10,7 +10,8 @@ export type prodType={
     description:string,
     category:string,
     image:string,
-    rating:any
+    rating:any,
+    amount:number
 }
 export type initialCartType={
     cart:prodType[],
@@ -24,18 +25,22 @@ const initialState={
 }
 const AppContext=createContext<{
     state: initialCartType;
-    addToCart:(i:number,data:prodType)=>void,
+    addToCart:(i:number,data:prodType|undefined)=>void,
     openCart:boolean,
     setOpenCart:(s:boolean)=>void,
     categ:string[],
-    products:prodType[]
+    products:prodType[],
+    plusminus:(i:number,t:string)=>void,
+    del:(i:number)=>void
 }>({
     state: initialState,
     addToCart:()=>{},
     openCart:false, 
     setOpenCart:()=>{},
     categ:[],
-    products:[]
+    products:[],
+    plusminus:()=>{},
+    del:()=>{}
 })
 
 const fetchCateg=async()=>{
@@ -52,11 +57,21 @@ const AppProvider:React.FC<any>=({children})=>{
     const {data:products,isLoading}=useQuery(['products'],fetchData)
     const [state,dispatch]=useReducer(reducer,initialState)
     
-    const addToCart=(id:number,data:prodType)=>{
+    const addToCart=(id:number,data:prodType|undefined)=>{
         dispatch({type:'ADD',id:id,data:data})
     }
-    console.log(state.cart)
-return <AppContext.Provider value={{addToCart,state,products,categ,openCart,setOpenCart}}>{children}</AppContext.Provider>
+    const plusminus=(id:number,type:string)=>{
+        dispatch({type:type,id:id})
+    }
+    const del=(id:number)=>{
+        dispatch({type:'DELETE',id:id})
+    }
+
+useEffect(() => {
+  dispatch({type:'TOTAL'})
+}, [state.cart])
+
+return <AppContext.Provider value={{plusminus,del,addToCart,state,products,categ,openCart,setOpenCart}}>{children}</AppContext.Provider>
 }
 
 export const useGlobalContext=()=>{
