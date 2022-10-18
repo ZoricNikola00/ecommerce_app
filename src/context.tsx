@@ -1,6 +1,7 @@
-import { useState, useContext, useReducer, useEffect,createContext} from 'react'
+import { useState, useContext, useReducer,createContext,Dispatch} from 'react'
 import axios from 'axios'
 import {useQuery} from '@tanstack/react-query'
+import { reducer } from './reducer'
 
 export type prodType={
     id:number,
@@ -11,14 +12,27 @@ export type prodType={
     image:string,
     rating:any
 }
-
+export type initialCartType={
+    cart:prodType[],
+    total:number,
+    amount:number
+}
+const initialState={
+    cart:[],
+    total:0,
+    amount:0,
+}
 const AppContext=createContext<{
+    state: initialCartType;
+    addToCart:(i:number,data:prodType)=>void,
     openCart:boolean,
     setOpenCart:(s:boolean)=>void,
     categ:string[],
     products:prodType[]
 }>({
-    openCart:false,
+    state: initialState,
+    addToCart:()=>{},
+    openCart:false, 
     setOpenCart:()=>{},
     categ:[],
     products:[]
@@ -36,8 +50,13 @@ const AppProvider:React.FC<any>=({children})=>{
     const [openCart,setOpenCart]=useState(false)
     const {data:categ}=useQuery(['categ'],fetchCateg)
     const {data:products,isLoading}=useQuery(['products'],fetchData)
-
-return <AppContext.Provider value={{products,categ,openCart,setOpenCart}}>{children}</AppContext.Provider>
+    const [state,dispatch]=useReducer(reducer,initialState)
+    
+    const addToCart=(id:number,data:prodType)=>{
+        dispatch({type:'ADD',id:id,data:data})
+    }
+    console.log(state.cart)
+return <AppContext.Provider value={{addToCart,state,products,categ,openCart,setOpenCart}}>{children}</AppContext.Provider>
 }
 
 export const useGlobalContext=()=>{
