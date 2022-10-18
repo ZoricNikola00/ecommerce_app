@@ -18,7 +18,6 @@ return data?.data
 const Shop = () => {
     const {string}=useParams()
     const {data,isLoading}=useQuery(['shop',string],()=>fetchData(string))
-    console.log(data)
   return (
     <div className='prod'>
             <h1>{string}</h1>
