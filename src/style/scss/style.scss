@@ -1,5 +1,19 @@
+$primary:rgb(67, 107, 133);
+$secondary:aliceblue;
+@import 'nav';
+@import 'cart';
+
 *{
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+}
+
+body{
+    background-color: rgb(228, 241, 244);
+}
+.App{
+    margin: 100px 0;
+    
+
 }
