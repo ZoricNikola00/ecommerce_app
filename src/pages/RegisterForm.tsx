@@ -28,7 +28,7 @@ const RegisterForm = () => {
       <label>Last Name</label>
       <input placeholder='Your Last Name...' type='text' ref={lastName} required />
       <label>Email</label>
-      <input placeholder='Your Email' type='text' ref={email} required />
+      <input placeholder='Your Email' type='email' ref={email} required />
       <label>Password</label>
       <input placeholder='Password' type='password' ref={password} required/>
       <label>Confirm Password</label>
