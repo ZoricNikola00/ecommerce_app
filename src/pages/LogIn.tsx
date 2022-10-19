@@ -1,12 +1,12 @@
 import React,{useRef} from 'react'
 
-const SignIn = () => {
-  const username:React.MutableRefObject<any>=useRef(null)
+const Login = () => {
+  const email:React.MutableRefObject<any>=useRef(null)
   const password:React.MutableRefObject<any>=useRef(null)
   const login=(e:any)=>{
     e.preventDefault()
     const data={
-      username:username.current.value,
+      email:email.current.value,
       password:password.current.value
     }
     const json=JSON.stringify(data, null, 4);
@@ -15,8 +15,8 @@ const SignIn = () => {
   return (
       <form onSubmit={login}>
         <h1>Sign In</h1>
-        <label>Username/Email</label>
-        <input placeholder='Type your username or email' type='text' ref={username} required />
+        <label>Email</label>
+        <input placeholder='Type your email' type='text' ref={email} required />
         <label>Password</label>
         <input placeholder='Type your password' type='password' ref={password} required/>
         <button type='submit'>Login</button>
@@ -24,4 +24,4 @@ const SignIn = () => {
   )
 }
 
-export default SignIn
+export default Login

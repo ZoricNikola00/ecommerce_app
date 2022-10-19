@@ -1,14 +1,13 @@
 import {BrowserRouter as Router, Route, Routes} from 'react-router-dom'
-import {FiShoppingCart} from 'react-icons/fi'
 import Home from './pages/Home';
 import Shop from './pages/Shop';
 import Specific from './pages/Specific';
 import Navbar from './components/Navbar';
-import SignIn from './pages/SignIn';
-import SignOut from './pages/SignOut';
 import Cart from './components/Cart';
 import { useGlobalContext } from './context';
 import About from './pages/About';
+import Login from './pages/LogIn';
+import RegisterForm from './pages/RegisterForm';
 
 
 function App() {
@@ -27,8 +26,8 @@ function App() {
           <Route path='/' element={<Home/>}/>
           <Route path='/shop/:string' element={<Shop/>}/>
           <Route path='/specific/:id' element={<Specific/>}/>
-          <Route path='/signin' element={<SignIn/>}/>
-          <Route path='/signout' element={<SignOut/>}/>
+          <Route path='/login' element={<Login/>}/>
+          <Route path='/register' element={<RegisterForm/>}/>
           <Route path='/about' element={<About/>}/>
         </Routes>
       </Router>

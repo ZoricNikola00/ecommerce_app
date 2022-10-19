@@ -22,8 +22,8 @@ const {categ}=useGlobalContext()
             <Link to='about'><li>About</li></Link>
         </ul>
         <div className='signinout'>
-            <Link to='signin'><div><FaSignInAlt/><span>Login</span></div></Link>
-            <Link to='signout'><div><FaUserPlus/><span>Register</span></div></Link>
+            <Link to='login'><div><FaSignInAlt/><span>Login</span></div></Link>
+            <Link to='register'><div><FaUserPlus/><span>Register</span></div></Link>
         </div>
     </nav>
   )
