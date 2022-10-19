@@ -1,12 +1,15 @@
 import React from 'react'
 import { useParams } from 'react-router-dom'
+import Loader from '../components/Loader'
 import { prodType, useGlobalContext } from '../context'
 
 const Specific = () => {
-  const {products,setOpenCart,addToCart}=useGlobalContext()
+  const {products,setOpenCart,addToCart,isLoading}=useGlobalContext()
   const {id}=useParams()
   const itemEl=products?.find((x:prodType)=>x.id===Number(id))
-  console.log(itemEl)
+  if(isLoading){
+    return <Loader/>
+  }
   return (
     <div className='specific'>
       <img src={itemEl?.image}/>

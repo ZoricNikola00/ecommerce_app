@@ -5,11 +5,12 @@ import {Link} from 'react-router-dom'
 import { useQuery } from '@tanstack/react-query'
 import { prodType, useGlobalContext } from '../context'
 import Item from '../components/Item'
+import Loader from '../components/Loader'
 
 const imgs=['https://previews.123rf.com/images/moodboard/moodboard1307/moodboard130707295/20742015-interior-of-a-electronics-store.jpg','https://as2.ftcdn.net/v2/jpg/02/36/51/09/1000_F_236510995_PYgUORegr8D3m9oMeA0c387C75pbDUdT.jpg','https://media.istockphoto.com/photos/mens-suits-on-hangers-in-different-colors-picture-id887360960?k=20&m=887360960&s=612x612&w=0&h=N0k2yX9noV6kNgpmKbcSXaLOl2x8Mbt_lyppAmfhNcA=','https://media.istockphoto.com/photos/women-clothes-hanging-on-hangers-clothing-rails-fashion-design-picture-id916092484?k=20&m=916092484&s=612x612&w=0&h=2aTLAucj_-qbbfhBiJEXfdiY3-k0gx0el8OrKFpi3O8=']
 
 const Home = () => {
-    const {categ,products}=useGlobalContext()
+    const {categ,products,isLoading}=useGlobalContext()
     const [indx,setIndx]=useState(0)
 
     const next=()=>{
@@ -58,7 +59,7 @@ const sorted=products?.sort((a:prodType,b:prodType)=>a.rating.rate - b.rating.ra
         <div className='prod'>
             <h1>Our best rated products</h1>
             <div className='prod-wrap'>
-          {sorted?.map((x:prodType)=>{
+          {isLoading? <Loader/>:sorted?.map((x:prodType)=>{
             const {id,image,title,price}=x
             return <Item key={id} item={x}/>
           })}

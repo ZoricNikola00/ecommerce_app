@@ -31,7 +31,8 @@ const AppContext=createContext<{
     categ:string[],
     products:prodType[],
     plusminus:(i:number,t:string)=>void,
-    del:(i:number)=>void
+    del:(i:number)=>void,
+    isLoading:boolean
 }>({
     state: initialState,
     addToCart:()=>{},
@@ -40,7 +41,8 @@ const AppContext=createContext<{
     categ:[],
     products:[],
     plusminus:()=>{},
-    del:()=>{}
+    del:()=>{},
+    isLoading:false
 })
 
 const fetchCateg=async()=>{
@@ -71,7 +73,7 @@ useEffect(() => {
   dispatch({type:'TOTAL'})
 }, [state.cart])
 
-return <AppContext.Provider value={{plusminus,del,addToCart,state,products,categ,openCart,setOpenCart}}>{children}</AppContext.Provider>
+return <AppContext.Provider value={{isLoading,plusminus,del,addToCart,state,products,categ,openCart,setOpenCart}}>{children}</AppContext.Provider>
 }
 
 export const useGlobalContext=()=>{

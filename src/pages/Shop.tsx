@@ -3,6 +3,7 @@ import {useParams} from 'react-router-dom'
 import axios from 'axios'
 import { prodType } from '../context'
 import Item from '../components/Item'
+import Loader from '../components/Loader'
 
 const fetchData=async(s:string|undefined)=>{
     let data
@@ -18,6 +19,10 @@ return data?.data
 const Shop = () => {
     const {string}=useParams()
     const {data,isLoading}=useQuery(['shop',string],()=>fetchData(string))
+
+    if(isLoading){
+      return <Loader/>
+    }
   return (
     <div className='prod'>
             <h1>{string}</h1>
